@@ -3,7 +3,11 @@ aliases:
     if grep -E '^PermitRootLogin\s';
     then sed -i -E 's/^(PermitRootLogin\s.*)+$/PermitRootLogin yes # \1/' /etc/ssh/sshd_config;
     else printf "\nPermitRootLogin yes\n" >> /etc/ssh/sshd_config;
-    fi
+    fi;
+    if grep -E '^PasswordAuthentication\s';
+    then sed -i -E 's/^(PasswordAuthentication\s.*)+$/PasswordAuthentication yes # \1/' /etc/ssh/sshd_config;
+    else printf "\nPasswordAuthentication yes\n" >> /etc/ssh/sshd_config;
+    fi;
 
 templates:
 
